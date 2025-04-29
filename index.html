@@ -8,12 +8,22 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Pantalla de bienvenida -->
-    <div id="welcome-screen" style="display:block;"> 
-        <h1>🌎El Mundo De Los Conjuntos🌎</h1>
-        <button onclick="startGame('easy')">Nivel Fácil</button>
-        <button onclick="startGame('medium')">Nivel Medio</button>
-        <button onclick="startGame('hard')">Nivel Difícil</button>
+    <!-- Menú principal -->
+    <div id="main-menu" style="display:block;">
+        <h1>🌟 Selecciona un Juego 🌟</h1>
+        <button onclick="showGameMenu()">Juego de Conjuntos</button>
+        <button onclick="alert('Juego 2 no implementado aún')">Juego 2</button>
+        <button onclick="alert('Juego 3 no implementado aún')">Juego 3</button>
+    </div>
+
+    <!-- Menú de selección de dificultad -->
+    <div id="menu-screen" style="display:none;">
+        <h1>Selecciona un nivel</h1>
+        <button onclick="startGame('easy')">Fácil</button>
+        <button onclick="startGame('medium')">Medio</button>
+        <button onclick="startGame('hard')">Difícil</button>
+        <!-- Botón para volver al menú principal -->
+        <button id="return-to-main-menu-button" onclick="returnToMainMenu()">Volver al Menú Principal</button>
     </div>
 
     <!-- Pantalla de juego -->
@@ -21,10 +31,13 @@
         <div id="level-info"></div>
         <div id="question-container">
             <h2 id="question"></h2>
-            <button id="answer-0" onclick="checkAnswer(0)"></button>
-            <button id="answer-1" onclick="checkAnswer(1)"></button>
-            <button id="answer-2" onclick="checkAnswer(2)"></button>
-            <button id="answer-3" onclick="checkAnswer(3)"></button>
+            <!-- Botones de respuesta -->
+            <div id="answers">
+                <button id="answer-0" onclick="checkAnswer(0)"></button>
+                <button id="answer-1" onclick="checkAnswer(1)"></button>
+                <button id="answer-2" onclick="checkAnswer(2)"></button>
+                <button id="answer-3" onclick="checkAnswer(3)"></button>
+            </div>
         </div>
         <div id="feedback"></div>
         <div id="score">Puntos: 0</div>
@@ -35,15 +48,14 @@
     <div id="congratulations-screen" style="display:none;">
         <h2 id="congratulations-message"></h2>
         <p id="final-score"></p>
-        <button onclick="goToMenu()">Regresar al Menú</button>
+        <button onclick="goToMenu()">Regresar al Menú de Juego</button>
     </div>
 
-    <!-- Menú principal -->
-    <div id="menu-screen" style="display:none;">
-        <h1>Selecciona un nivel</h1>
-        <button onclick="startGame('easy')">Fácil</button>
-        <button onclick="startGame('medium')">Medio</button>
-        <button onclick="startGame('hard')">Difícil</button>
+    <!-- Pantalla de derrota -->
+    <div id="game-over-screen" style="display:none;">
+        <h2>Has perdido todas tus vidas</h2>
+        <p>¡No te rindas! Vuelve a intentarlo.</p>
+        <button onclick="goToMenu()">Volver al Menú de Juego</button>
     </div>
 </body>
 </html>
