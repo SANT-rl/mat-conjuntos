@@ -14,8 +14,8 @@ function startGame(level) {
     currentQuestionIndex = 0;
     answering = false;
 
-    // Ocultar la pantalla de bienvenida
-    document.getElementById('welcome-screen').style.display = 'none';
+    // Ocultar el menú de selección de dificultad
+    document.getElementById('menu-screen').style.display = 'none';
 
     // Mostrar la pantalla del juego
     document.getElementById('game-screen').style.display = 'block';
@@ -79,10 +79,7 @@ function showQuestion() {
         document.getElementById('lives').innerText = `Vidas: ${lives}`; // Actualizar vidas
     } else {
         // Si se completaron todas las preguntas, mostrar felicitaciones
-        document.getElementById('game-screen').style.display = 'none'; // Ocultar la pantalla de preguntas
-        document.getElementById('congratulations-screen').style.display = 'block'; // Mostrar pantalla de felicitaciones
-        document.getElementById('congratulations-message').innerText = `¡Felicitaciones! Has completado el nivel ${currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1)}.`;
-        document.getElementById('final-score').innerText = `Puntaje final: ${score}`;
+        showCongratulations();
     }
 }
 
@@ -121,10 +118,45 @@ function checkAnswer(answerIndex) {
 // Finalizar el juego
 function endGame() {
     document.getElementById('game-screen').style.display = 'none';
-    goToMenu();
+    document.getElementById('game-over-screen').style.display = 'block'; // Mostrar pantalla de derrota
+
+    // Mostrar el botón de "Volver al Menú del Juego"
+    const returnButton = document.getElementById('return-to-main-menu-button');
+    if (returnButton) {
+        returnButton.style.display = 'block';
+    }
+}
+
+function showCongratulations() {
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('congratulations-screen').style.display = 'block'; // Mostrar pantalla de felicitaciones
+
+    // Mostrar el botón de "Volver al Menú del Juego"
+    const returnButton = document.getElementById('return-to-main-menu-button');
+    if (returnButton) {
+        returnButton.style.display = 'block';
+    }
+}
+
+// Mostrar el menú de selección de dificultad
+function showGameMenu() {
+    document.getElementById('main-menu').style.display = 'none'; // Ocultar el menú principal
+    document.getElementById('menu-screen').style.display = 'block'; // Mostrar el menú de selección de niveles
+
+    // Mostrar el botón de "Volver al Menú Principal"
+    const returnButton = document.getElementById('return-to-main-menu-button');
+    if (returnButton) {
+        returnButton.style.display = 'block';
+    }
 }
 
 // Volver al menú principal
+function returnToMainMenu() {
+    document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
+    document.getElementById('main-menu').style.display = 'block'; // Mostrar el menú principal
+}
+
+// Volver al menú de selección de dificultad
 function goToMenu() {
     // Reiniciar variables importantes
     questions = [];
@@ -135,10 +167,27 @@ function goToMenu() {
     currentLevel = '';
 
     // Mostrar pantallas correctamente
-    document.getElementById('welcome-screen').style.display = 'block';
-    document.getElementById('menu-screen').style.display = 'none';
-    document.getElementById('game-screen').style.display = 'none';
-    document.getElementById('congratulations-screen').style.display = 'none';
+    document.getElementById('game-over-screen').style.display = 'none'; // Ocultar pantalla de derrota
+    document.getElementById('congratulations-screen').style.display = 'none'; // Ocultar pantalla de felicitaciones
+    document.getElementById('menu-screen').style.display = 'block'; // Mostrar solo el menú de selección de dificultad
+    document.getElementById('main-menu').style.display = 'none'; // Asegurarse de que el menú principal esté oculto
+
+    // Limpiar el contenido de las pantallas de felicitaciones y derrota
+    const gameOverMessage = document.getElementById('game-over-message');
+    if (gameOverMessage) {
+        gameOverMessage.innerText = '';
+    }
+
+    const congratulationsMessage = document.getElementById('congratulations-message');
+    if (congratulationsMessage) {
+        congratulationsMessage.innerText = '';
+    }
+
+    // Ocultar el botón de "Volver al Menú del Juego"
+    const returnButton = document.getElementById('return-to-main-menu-button');
+    if (returnButton) {
+        returnButton.style.display = 'block';
+    }
 
     // Limpiar textos visibles
     document.getElementById('question').innerText = '';
@@ -146,5 +195,3 @@ function goToMenu() {
     document.getElementById('score').innerText = 'Puntos: 0';
     document.getElementById('lives').innerText = 'Vidas: 3';
 }
-
-
