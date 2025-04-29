@@ -131,6 +131,18 @@ function showCongratulations() {
     document.getElementById('game-screen').style.display = 'none';
     document.getElementById('congratulations-screen').style.display = 'block'; // Mostrar pantalla de felicitaciones
 
+    // Actualizar el mensaje de felicitaciones
+    const congratulationsMessage = document.getElementById('congratulations-message');
+    if (congratulationsMessage) {
+        congratulationsMessage.innerText = '¡Felicitaciones! Has completado el nivel con éxito.';
+    }
+
+    // Mostrar el puntaje final
+    const finalScore = document.getElementById('final-score');
+    if (finalScore) {
+        finalScore.innerText = `Puntaje final: ${score}`;
+    }
+
     // Mostrar el botón de "Volver al Menú del Juego"
     const returnButton = document.getElementById('return-to-main-menu-button');
     if (returnButton) {
