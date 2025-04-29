@@ -22,7 +22,6 @@
         <button onclick="startGame('easy')">Fácil</button>
         <button onclick="startGame('medium')">Medio</button>
         <button onclick="startGame('hard')">Difícil</button>
-        <!-- Botón para volver al menú principal -->
         <button id="return-to-main-menu-button" onclick="returnToMainMenu()">Volver al Menú Principal</button>
     </div>
 
@@ -31,7 +30,6 @@
         <div id="level-info"></div>
         <div id="question-container">
             <h2 id="question"></h2>
-            <!-- Botones de respuesta -->
             <div id="answers">
                 <button id="answer-0" onclick="checkAnswer(0)"></button>
                 <button id="answer-1" onclick="checkAnswer(1)"></button>
@@ -46,8 +44,8 @@
 
     <!-- Pantalla de felicitaciones -->
     <div id="congratulations-screen" style="display:none;">
-        <h2 id="congratulations-message"></h2>
-        <p id="final-score"></p>
+        <h2 id="congratulations-message"></h2> <!-- Mensaje de felicitaciones -->
+        <p id="final-score"></p> <!-- Puntaje final -->
         <button onclick="goToMenu()">Regresar al Menú de Juego</button>
     </div>
 
@@ -59,12 +57,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
