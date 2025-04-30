@@ -1,12 +1,18 @@
 /* Estilos generales */
+html, body {
+    overflow: hidden;
+    height: 100dvh;
+    touch-action: none;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100dvh; /* Corregido para móviles */
+    height: 100dvh;
     background: url('planetas.jpg') no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
@@ -205,13 +211,11 @@ button:hover {
     }
 }
 
-/* Menú principal centrado (ajustado) */
 #main-menu {
-    margin: auto;
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     padding: 30px;
     border-radius: 15px;
@@ -219,6 +223,8 @@ button:hover {
     max-width: 400px;
     backdrop-filter: blur(6px);
     box-shadow: none;
+    max-height: 100dvh;
+    overflow: hidden;
 }
 
 #progress-bar-container {
