@@ -27,11 +27,13 @@ body {
     backdrop-filter: blur(6px); /* Efecto de desenfoque */
 }
 
-#welcome-message h1 {
-    font-size: 2.2em; /* Tamaño ajustado */
-    margin-bottom: 20px;
+#welcome-message {
+    text-align: center;
+    margin-top: 20px; /* Espaciado entre los botones y el mensaje */
     color: #ffcc00; /* Amarillo vibrante */
-    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffaa00;
+    font-size: 1.2em; /* Tamaño del texto */
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffaa00; /* Efecto de brillo */
+    font-weight: bold;
 }
 
 /* Botones generales */
@@ -215,4 +217,12 @@ button:hover {
     max-width: 400px; /* Ancho máximo */
     backdrop-filter: blur(6px); /* Efecto de desenfoque */
     box-shadow: none; /* Elimina la sombra negra */
+}
+
+#progress-bar-container {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px #000;
 }
