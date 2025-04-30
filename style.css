@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Cambiado de height a min-height para evitar problemas en móviles */
     background: url('planetas.jpg') no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
@@ -31,9 +31,9 @@ body {
 button {
     background: linear-gradient(135deg, #00e5ff, #00bcd4);
     color: white;
-    padding: 15px 40px;
+    padding: 15px 20px;
     font-size: 1.2em;
-    margin: 10px;
+    margin: 10px auto; /* Centra los botones horizontalmente */
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -51,7 +51,7 @@ button:hover {
 
 /* Preguntas y respuestas */
 #question {
-    font-size: 1.8em;
+    font-size: 1.5em;
     margin-bottom: 20px;
     color: #00e5ff;
     text-shadow: 0 0 10px #00e5ff, 0 0 20px #00bcd4;
@@ -59,8 +59,8 @@ button:hover {
 
 #answers button {
     background: linear-gradient(135deg, #2196F3, #1976d2);
-    margin: 10px;
-    padding: 15px 30px;
+    margin: 10px auto; /* Centra los botones horizontalmente */
+    padding: 15px 20px;
     border-radius: 12px;
     font-size: 1.1em;
     color: white;
@@ -75,7 +75,7 @@ button:hover {
 /* Feedback de respuestas */
 #feedback {
     margin-top: 20px;
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: bold;
     color: #ffeb3b;
     text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffc107;
@@ -84,27 +84,27 @@ button:hover {
 /* Responsividad */
 @media (max-width: 768px) {
     body {
-        padding: 20px;
-        height: auto; /* Permite que el contenido se ajuste a la altura del dispositivo */
+        padding: 10px;
+        min-height: auto; /* Permite que el contenido se ajuste a la altura del dispositivo */
     }
 
     #main-menu, #menu-screen, #game-screen, #congratulations-screen, #game-over-screen {
-        padding: 20px;
+        padding: 15px;
         width: 100%;
         max-width: 400px; /* Ajusta el ancho máximo en móviles */
     }
 
     button {
-        padding: 10px 20px;
+        padding: 10px 15px;
         font-size: 1em;
     }
 
     #question {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
     #answers button {
-        padding: 10px 20px;
+        padding: 10px 15px;
         font-size: 1em;
     }
 }
@@ -115,6 +115,7 @@ button:hover {
     margin: 20px auto; /* Centra horizontalmente y agrega un margen superior e inferior */
     text-align: center;
 }
+
 
 
 
