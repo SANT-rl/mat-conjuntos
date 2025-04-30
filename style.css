@@ -6,63 +6,68 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Altura fija para evitar desplazamientos */
+    height: 100vh;
     background: url('planetas.jpg') no-repeat center center fixed;
     background-size: cover;
-    overflow: hidden; /* Evita barras de desplazamiento */
+    overflow: hidden;
     color: #ffffff;
-    flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
 }
 
-/* Contenedores principales */
-.container {
+/* Pantalla de bienvenida */
+#welcome-screen {
     text-align: center;
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.85); /* Fondo semitransparente */
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
-    max-width: 400px; /* Ajusta el ancho máximo */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente el contenido interno */
-    align-items: center; /* Centra horizontalmente el contenido interno */
+    max-width: 500px;
 }
 
-/* Títulos */
-h1, h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+#welcome-message h1 {
+    font-size: 2.5em;
     color: #00e5ff;
+    margin-bottom: 20px;
     text-shadow: 0 0 10px #00e5ff, 0 0 20px #00bcd4;
 }
 
-/* Botones */
 button {
     background: linear-gradient(135deg, #00e5ff, #00bcd4);
     color: white;
-    padding: 15px 20px;
+    padding: 15px 40px;
     font-size: 1.2em;
-    margin: 10px auto; /* Centra los botones horizontalmente */
+    margin: 10px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
     box-shadow: 0 4px 15px rgba(0, 229, 255, 0.5);
-    width: 100%; /* Asegura que los botones ocupen todo el ancho en móviles */
-    max-width: 300px; /* Limita el ancho máximo */
 }
 
-/* Botones al pasar el mouse */
 button:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 229, 255, 0.8);
 }
 
-/* Preguntas y respuestas */
+/* Pantalla del juego */
+#game-screen {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+#question-container {
+    margin-top: 30px;
+}
+
 #question {
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin-bottom: 20px;
     color: #00e5ff;
     text-shadow: 0 0 10px #00e5ff, 0 0 20px #00bcd4;
@@ -70,8 +75,8 @@ button:hover {
 
 #answers button {
     background: linear-gradient(135deg, #2196F3, #1976d2);
-    margin: 10px auto; /* Centra los botones horizontalmente */
-    padding: 15px 20px;
+    margin: 10px;
+    padding: 15px 30px;
     border-radius: 12px;
     font-size: 1.1em;
     color: white;
@@ -79,14 +84,17 @@ button:hover {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.5);
-    width: 100%; /* Asegura que los botones ocupen todo el ancho en móviles */
-    max-width: 300px; /* Limita el ancho máximo */
+}
+
+#answers button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.8);
 }
 
 /* Feedback de respuestas */
 #feedback {
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-weight: bold;
     color: #ffeb3b;
     text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffc107;
@@ -96,12 +104,12 @@ button:hover {
 #congratulations-screen {
     text-align: center;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 #congratulations-message {
@@ -115,12 +123,12 @@ button:hover {
 #game-over-screen {
     text-align: center;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 #game-over-screen h2 {
@@ -128,6 +136,29 @@ button:hover {
     color: #FF5252;
     text-shadow: 0 0 10px #FF5252, 0 0 20px #FF1744;
     margin-bottom: 20px;
+}
+
+#game-over-screen p {
+    font-size: 1.2em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+#game-over-screen button {
+    background: linear-gradient(135deg, #FF5252, #FF1744);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 82, 82, 0.5);
+}
+
+#game-over-screen button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.8);
 }
 
 /* Animaciones suaves */
@@ -139,27 +170,25 @@ button:hover {
 /* Responsividad */
 @media (max-width: 768px) {
     body {
-        padding: 10px;
-        height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
-        overflow: hidden; /* Evita barras de desplazamiento */
+        padding: 20px;
     }
 
-    .container {
+    #welcome-screen, #game-screen, #congratulations-screen, #game-over-screen, #main-menu {
         padding: 20px;
         width: 100%;
     }
 
     button {
-        padding: 10px 15px;
+        padding: 10px 20px;
         font-size: 1em;
     }
 
     #question {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
 
     #answers button {
-        padding: 10px 15px;
+        padding: 10px 20px;
         font-size: 1em;
     }
 }
