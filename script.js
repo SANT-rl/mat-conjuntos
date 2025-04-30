@@ -70,6 +70,7 @@ function loadQuestions(level) {
 // Mostrar la siguiente pregunta
 function showQuestion() {
     if (currentQuestionIndex < questions.length) {
+        updateProgress(currentQuestionIndex + 1, questions.length); // Actualizar progreso
         let questionData = questions[currentQuestionIndex];
         document.getElementById('question').innerText = questionData.question;
         for (let i = 0; i < 4; i++) {
@@ -131,6 +132,9 @@ function showCongratulations() {
     document.getElementById('game-screen').style.display = 'none';
     document.getElementById('congratulations-screen').style.display = 'block'; // Mostrar pantalla de felicitaciones
 
+    // Ocultar la barra de progreso
+    document.getElementById('progress-bar-container').style.display = 'none';
+
     // Actualizar el mensaje de felicitaciones
     const congratulationsMessage = document.getElementById('congratulations-message');
     if (congratulationsMessage) {
@@ -142,18 +146,15 @@ function showCongratulations() {
     if (finalScore) {
         finalScore.innerText = `Puntaje final: ${score}`;
     }
-
-    // Mostrar el botón de "Volver al Menú del Juego"
-    const returnButton = document.getElementById('return-to-main-menu-button');
-    if (returnButton) {
-        returnButton.style.display = 'block';
-    }
 }
 
 // Mostrar el menú de selección de dificultad
 function showGameMenu() {
     document.getElementById('main-menu').style.display = 'none'; // Ocultar el menú principal
     document.getElementById('menu-screen').style.display = 'block'; // Mostrar el menú de selección de niveles
+
+    // Ocultar la barra de progreso
+    document.getElementById('progress-bar-container').style.display = 'none';
 
     // Mostrar el botón de "Volver al Menú Principal"
     const returnButton = document.getElementById('return-to-main-menu-button');
@@ -166,9 +167,11 @@ function showGameMenu() {
 function returnToMainMenu() {
     document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
     document.getElementById('main-menu').style.display = 'block'; // Mostrar el menú principal
+
+    // Ocultar la barra de progreso
+    document.getElementById('progress-bar-container').style.display = 'none';
 }
 
-// Volver al menú de selección de dificultad
 function goToMenu() {
     // Reiniciar variables importantes
     questions = [];
@@ -184,26 +187,18 @@ function goToMenu() {
     document.getElementById('menu-screen').style.display = 'block'; // Mostrar solo el menú de selección de dificultad
     document.getElementById('main-menu').style.display = 'none'; // Asegurarse de que el menú principal esté oculto
 
-    // Limpiar el contenido de las pantallas de felicitaciones y derrota
-    const gameOverMessage = document.getElementById('game-over-message');
-    if (gameOverMessage) {
-        gameOverMessage.innerText = '';
-    }
-
-    const congratulationsMessage = document.getElementById('congratulations-message');
-    if (congratulationsMessage) {
-        congratulationsMessage.innerText = '';
-    }
-
-    // Ocultar el botón de "Volver al Menú del Juego"
-    const returnButton = document.getElementById('return-to-main-menu-button');
-    if (returnButton) {
-        returnButton.style.display = 'block';
-    }
+    // Ocultar la barra de progreso
+    document.getElementById('progress-bar-container').style.display = 'none';
 
     // Limpiar textos visibles
     document.getElementById('question').innerText = '';
     document.getElementById('feedback').innerText = '';
     document.getElementById('score').innerText = 'Puntos: 0';
     document.getElementById('lives').innerText = 'Vidas: 3';
+}
+
+function updateProgress(current, total) {
+    const progressText = document.getElementById('progress-text');
+    progressText.textContent = `Nivel ${current}/${total}`;
+    document.getElementById('progress-bar-container').style.display = 'block'; // Mostrar la barra
 }
