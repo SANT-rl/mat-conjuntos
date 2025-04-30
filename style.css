@@ -181,15 +181,27 @@ button:hover {
 
 /* Responsividad */
 @media (max-width: 768px) {
-    #congratulations-screen,
-    #game-over-screen,
-    #menu-screen,
-    #game-screen {
-        top: 45%; /* Eleva un poco las ventanas */
-        transform: translate(-50%, -50%); /* Centra horizontal y verticalmente */
-        padding: 20px; /* Reduce el espaciado interno */
-        width: 95%; /* Aumenta el ancho relativo */
-        max-width: 350px; /* Reduce el ancho máximo */
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 15px; /* Reducido para pantallas pequeñas */
+        width: 100%;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    #question {
+        font-size: 1.3em;
+    }
+
+    #answers button {
+        padding: 10px 15px;
+        font-size: 1em;
     }
 }
 
