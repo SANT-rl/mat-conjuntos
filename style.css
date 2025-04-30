@@ -2,11 +2,11 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100dvh; /* Corregido para móviles */
     background: url('planetas.jpg') no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
@@ -18,36 +18,36 @@ body {
 #welcome-screen {
     text-align: center;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente más ligero */
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra más pequeña */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
     max-width: 400px;
-    backdrop-filter: blur(6px); /* Efecto de desenfoque */
+    backdrop-filter: blur(6px);
 }
 
 #welcome-message {
     text-align: center;
-    margin-top: 20px; /* Espaciado entre los botones y el mensaje */
-    color: #ffcc00; /* Amarillo vibrante */
-    font-size: 1.2em; /* Tamaño del texto */
-    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffaa00; /* Efecto de brillo */
+    margin-top: 20px;
+    color: #ffcc00;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffaa00;
     font-weight: bold;
 }
 
 /* Botones generales */
 button {
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Fondo degradado azul/púrpura */
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: white;
-    padding: 12px 18px; /* Tamaño ajustado */
+    padding: 12px 18px;
     font-size: 1.1em;
-    margin: 10px 0; /* Espaciado entre botones */
+    margin: 10px 0;
     border: none;
-    border-radius: 10px; /* Bordes más suaves */
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 3px 10px rgba(106, 17, 203, 0.4); /* Sombra más pequeña */
+    box-shadow: 0 3px 10px rgba(106, 17, 203, 0.4);
     width: 100%;
     max-width: 300px;
 }
@@ -61,13 +61,13 @@ button:hover {
 #game-screen {
     text-align: center;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente más ligero */
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra más pequeña */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     width: 90%;
     max-width: 500px;
     animation: fadeIn 1s ease-in-out;
-    backdrop-filter: blur(6px); /* Efecto de desenfoque */
+    backdrop-filter: blur(6px);
 }
 
 #question-container {
@@ -75,23 +75,23 @@ button:hover {
 }
 
 #question {
-    font-size: 1.6em; /* Tamaño ajustado */
+    font-size: 1.6em;
     margin-bottom: 20px;
     color: #ffffff;
     text-shadow: 0 0 10px #ffffff, 0 0 20px #00bcd4;
 }
 
 #answers button {
-    background: linear-gradient(135deg, #43cea2, #185a9d); /* Fondo degradado verde/azul */
+    background: linear-gradient(135deg, #43cea2, #185a9d);
     margin: 10px 0;
-    padding: 12px 18px; /* Tamaño ajustado */
+    padding: 12px 18px;
     border-radius: 10px;
     font-size: 1em;
     color: white;
     border: none;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 3px 10px rgba(67, 206, 162, 0.4); /* Sombra más pequeña */
+    box-shadow: 0 3px 10px rgba(67, 206, 162, 0.4);
     width: 100%;
     max-width: 300px;
 }
@@ -114,17 +114,17 @@ button:hover {
 #congratulations-screen {
     text-align: center;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente más ligero */
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra más pequeña */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
     max-width: 400px;
-    backdrop-filter: blur(6px); /* Efecto de desenfoque */
+    backdrop-filter: blur(6px);
 }
 
 #congratulations-message {
-    font-size: 1.8em; /* Tamaño ajustado */
+    font-size: 1.8em;
     color: #4CAF50;
     text-shadow: 0 0 10px #4CAF50, 0 0 20px #388E3C;
     margin-bottom: 20px;
@@ -134,17 +134,17 @@ button:hover {
 #game-over-screen {
     text-align: center;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente más ligero */
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra más pequeña */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
     max-width: 400px;
-    backdrop-filter: blur(6px); /* Efecto de desenfoque */
+    backdrop-filter: blur(6px);
 }
 
 #game-over-screen h2 {
-    font-size: 1.8em; /* Tamaño ajustado */
+    font-size: 1.8em;
     color: #FF5252;
     text-shadow: 0 0 10px #FF5252, 0 0 20px #FF1744;
     margin-bottom: 20px;
@@ -157,15 +157,15 @@ button:hover {
 }
 
 #game-over-screen button {
-    background: linear-gradient(135deg, #FF5252, #FF1744); /* Fondo degradado rojo */
+    background: linear-gradient(135deg, #FF5252, #FF1744);
     color: white;
-    padding: 12px 18px; /* Tamaño ajustado */
+    padding: 12px 18px;
     font-size: 1.1em;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 3px 10px rgba(255, 82, 82, 0.4); /* Sombra más pequeña */
+    box-shadow: 0 3px 10px rgba(255, 82, 82, 0.4);
 }
 
 #game-over-screen button:hover {
@@ -186,7 +186,7 @@ button:hover {
     }
 
     .container {
-        padding: 15px; /* Reducido para pantallas pequeñas */
+        padding: 15px;
         width: 100%;
     }
 
@@ -205,18 +205,20 @@ button:hover {
     }
 }
 
+/* Menú principal centrado (ajustado) */
 #main-menu {
-    position: fixed; /* Mantiene el menú centrado siempre */
-    top: 50%; /* Centra verticalmente */
-    left: 50%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta el centro exacto */
+    margin: auto;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     text-align: center;
-    padding: 30px; /* Espaciado interno */
-    border-radius: 15px; /* Bordes redondeados */
-    width: 90%; /* Ancho relativo al viewport */
-    max-width: 400px; /* Ancho máximo */
-    backdrop-filter: blur(6px); /* Efecto de desenfoque */
-    box-shadow: none; /* Elimina la sombra negra */
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    backdrop-filter: blur(6px);
+    box-shadow: none;
 }
 
 #progress-bar-container {
