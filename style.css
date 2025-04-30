@@ -116,7 +116,11 @@ button:hover {
     text-align: center;
 }
 
-
-
-
-
+/* CAMBIO IMPLEMENTADO: Centrar verticalmente los contenedores principales */
+#main-menu, #menu-screen, #game-screen, #congratulations-screen, #game-over-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido interno */
+    align-items: center; /* Centra horizontalmente el contenido interno */
+    height: 100%; /* Asegura que el contenedor ocupe toda la altura disponible */
+}
