@@ -10,19 +10,25 @@
 <body>
     <!-- Menú principal -->
     <div id="main-menu" style="display:block;">
-        <h1> Selecciona un Juego🎮 </h1>
+        <h1>Selecciona un Juego 🎮</h1>
         <button onclick="showGameMenu()">Juego de Conjuntos</button>
         <button onclick="alert('Juego 2 no implementado aún')">Juego 2</button>
         <button onclick="alert('Juego 3 no implementado aún')">Juego 3</button>
+        <div id="welcome-message">
+            <h3>Bienvenido, pásala bien 🕹️</h3>
+        </div>
     </div>
 
     <!-- Menú de selección de dificultad -->
     <div id="menu-screen" style="display:none;">
-        <h1> Selecciona un nivel 🕹️</h1>
+        <h1>Selecciona un nivel </h1>
         <button onclick="startGame('easy')">Fácil</button>
         <button onclick="startGame('medium')">Medio</button>
         <button onclick="startGame('hard')">Difícil</button>
         <button id="return-to-main-menu-button" onclick="returnToMainMenu()">Volver al Menú Principal</button>
+        <div id="welcome-message">
+            <h3>Bienvenido, pásala bien 🕹️</h3>
+        </div>
     </div>
 
     <!-- Pantalla de juego -->
@@ -55,6 +61,8 @@
         <p>¡No te rindas! Vuelve a intentarlo.</p>
         <button onclick="goToMenu()">Volver al Menú de Juego</button>
     </div>
+<div id="progress-bar-container" style="display:none;">
+    <h3 id="progress-text">Nivel 1/8</h3>
+</div>
 </body>
 </html>
-
