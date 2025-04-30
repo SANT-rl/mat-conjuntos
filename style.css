@@ -6,10 +6,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Cambiado de height a min-height para evitar problemas en móviles */
+    height: 100vh; /* Altura fija para evitar desplazamientos */
     background: url('planetas.jpg') no-repeat center center fixed;
     background-size: cover;
-    overflow: hidden;
+    overflow: hidden; /* Evita barras de desplazamiento */
     color: #ffffff;
     flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
 }
@@ -23,8 +23,12 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: fadeIn 1s ease-in-out;
     width: 90%;
-    max-width: 500px;
-    margin: 0 auto; /* Centra horizontalmente */
+    max-width: 400px; /* Ajusta el ancho máximo */
+    height: auto; /* Ajusta la altura automáticamente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido interno */
+    align-items: center; /* Centra horizontalmente el contenido interno */
 }
 
 /* Botones */
@@ -85,13 +89,15 @@ button:hover {
 @media (max-width: 768px) {
     body {
         padding: 10px;
-        min-height: auto; /* Permite que el contenido se ajuste a la altura del dispositivo */
+        height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
+        overflow: hidden; /* Evita barras de desplazamiento */
     }
 
     #main-menu, #menu-screen, #game-screen, #congratulations-screen, #game-over-screen {
         padding: 15px;
         width: 100%;
         max-width: 400px; /* Ajusta el ancho máximo en móviles */
+        height: auto; /* Ajusta la altura automáticamente */
     }
 
     button {
@@ -114,13 +120,4 @@ button:hover {
     display: block;
     margin: 20px auto; /* Centra horizontalmente y agrega un margen superior e inferior */
     text-align: center;
-}
-
-/* CAMBIO IMPLEMENTADO: Centrar verticalmente los contenedores principales */
-#main-menu, #menu-screen, #game-screen, #congratulations-screen, #game-over-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente el contenido interno */
-    align-items: center; /* Centra horizontalmente el contenido interno */
-    height: 100%; /* Asegura que el contenedor ocupe toda la altura disponible */
 }
