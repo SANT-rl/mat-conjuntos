@@ -165,6 +165,7 @@ function showGameMenu() {
 
 // Volver al menú principal
 function returnToMainMenu() {
+    document.getElementById('game-2-container').style.display = 'none';
     document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
     document.getElementById('main-menu').style.display = 'block'; // Mostrar el menú principal
 
@@ -201,4 +202,37 @@ function updateProgress(current, total) {
     const progressText = document.getElementById('progress-text');
     progressText.textContent = `Nivel ${current}/${total}`;
     document.getElementById('progress-bar-container').style.display = 'block'; // Mostrar la barra
+}
+
+// Función para iniciar el Juego 2
+function startGame2() {
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('game-2-container').style.display = 'flex';
+}
+
+// Función para mover el cuadro
+function movePlayer(direction) {
+    const player = document.getElementById('player');
+    const base = document.getElementById('game-base');
+    const playerStyle = window.getComputedStyle(player);
+    const baseStyle = window.getComputedStyle(base);
+
+    // Obtener las posiciones actuales
+    const playerLeft = parseInt(playerStyle.left);
+    const playerBottom = parseInt(playerStyle.bottom);
+    const baseWidth = parseInt(baseStyle.width);
+    const baseHeight = parseInt(baseStyle.height);
+    const playerSize = parseInt(playerStyle.width);
+
+    // Movimiento según la dirección
+    const step = 10; // Tamaño del paso
+    if (direction === 'up' && playerBottom + playerSize + step <= baseHeight) {
+        player.style.bottom = `${playerBottom + step}px`;
+    } else if (direction === 'down' && playerBottom - step >= 0) {
+        player.style.bottom = `${playerBottom - step}px`;
+    } else if (direction === 'left' && playerLeft - step >= 0) {
+        player.style.left = `${playerLeft - step}px`;
+    } else if (direction === 'right' && playerLeft + playerSize + step <= baseWidth) {
+        player.style.left = `${playerLeft + step}px`;
+    }
 }
