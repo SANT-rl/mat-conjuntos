@@ -12,7 +12,7 @@
     <div id="main-menu" style="display:block;">
         <h1>Selecciona un Juego 🎮</h1>
         <button onclick="showGameMenu()">Juego de Conjuntos</button>
-        <button onclick="alert('Juego 2 no implementado aún')">Juego 2</button>
+        <button onclick="startGame2()">Juego 2</button>
         <button onclick="alert('Juego 3 no implementado aún')">Juego 3</button>
         <div id="welcome-message">
             <h3>Bienvenido, pásala bien 🕹️</h3>
@@ -61,8 +61,26 @@
         <p>¡No te rindas! Vuelve a intentarlo.</p>
         <button onclick="goToMenu()">Volver al Menú de Juego</button>
     </div>
-<div id="progress-bar-container" style="display:none;">
-    <h3 id="progress-text">Nivel 1/8</h3>
-</div>
+
+    <!-- Juego 2: Mueve el Cuadro -->
+    <div id="game-2-container" style="display:none;">
+        <h2>Juego 2: Mueve el Cuadro</h2>
+        <div id="game-base">
+            <div id="player"></div>
+        </div>
+        <div id="controls">
+            <button onclick="movePlayer('up')">⬆️</button>
+            <div>
+                <button onclick="movePlayer('left')">⬅️</button>
+                <button onclick="movePlayer('down')">⬇️</button>
+                <button onclick="movePlayer('right')">➡️</button>
+            </div>
+        </div>
+        <button id="return-to-menu" onclick="returnToMainMenu()">Volver al Menú Principal</button>
+    </div>
+
+    <div id="progress-bar-container" style="display:none;">
+        <h3 id="progress-text">Nivel 1/8</h3>
+    </div>
 </body>
 </html>
