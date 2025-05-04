@@ -6,9 +6,6 @@ let questions = [];
 let currentQuestionIndex = 0;
 let answering = false; // Variable para controlar si el jugador está respondiendo
 
-// Variables globales para Three.js
-let scene, camera, renderer, cube;
-
 // Función para empezar el juego
 function startGame(level) {
     currentLevel = level;
@@ -168,17 +165,11 @@ function showGameMenu() {
 
 // Volver al menú principal
 function returnToMainMenu() {
-    document.getElementById('game-3d-container').style.display = 'none';
-    document.getElementById('main-menu').style.display = 'block';
+    document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
+    document.getElementById('main-menu').style.display = 'block'; // Mostrar el menú principal
 
-    // Limpiar el contenedor de Three.js
-    const container = document.getElementById('threejs-container');
-    while (container.firstChild) {
-        container.removeChild(container.firstChild);
-    }
-
-    // Eliminar eventos de teclado
-    document.removeEventListener('keydown', moveCube);
+    // Ocultar la barra de progreso
+    document.getElementById('progress-bar-container').style.display = 'none';
 }
 
 function goToMenu() {
@@ -204,87 +195,6 @@ function goToMenu() {
     document.getElementById('feedback').innerText = '';
     document.getElementById('score').innerText = 'Puntos: 0';
     document.getElementById('lives').innerText = 'Vidas: 3';
-}
-
-// Inicializar el juego 3D
-function start3DGame() {
-    document.getElementById('main-menu').style.display = 'none';
-    document.getElementById('game-3d-container').style.display = 'block';
-
-    // Configuración básica de Three.js
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / 500, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer();
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('threejs-container').appendChild(renderer.domElement);
-
-    // Crear un plano (zona de juego)
-    const planeGeometry = new THREE.PlaneGeometry(20, 20);
-    const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x555555, side: THREE.DoubleSide });
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = Math.PI / 2;
-    scene.add(plane);
-
-    // Crear un cubo (personaje)
-    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    cube.position.y = 0.5; // Elevar el cubo para que no esté dentro del plano
-    scene.add(cube);
-
-    // Configurar la cámara
-    camera.position.z = 10;
-    camera.position.y = 5;
-    camera.lookAt(0, 0, 0);
-
-    // Escuchar eventos de teclado
-    document.addEventListener('keydown', (event) => {
-        let direction;
-        switch (event.key) {
-            case 'ArrowUp':
-                direction = 'up';
-                break;
-            case 'ArrowDown':
-                direction = 'down';
-                break;
-            case 'ArrowLeft':
-                direction = 'left';
-                break;
-            case 'ArrowRight':
-                direction = 'right';
-                break;
-        }
-        if (direction) moveCube(direction);
-    });
-
-    // Iniciar la animación
-    animate();
-}
-
-// Función para mover el cubo
-function moveCube(direction) {
-    const speed = 0.5;
-    switch (direction) {
-        case 'up':
-            cube.position.z -= speed;
-            break;
-        case 'down':
-            cube.position.z += speed;
-            break;
-        case 'left':
-            cube.position.x -= speed;
-            break;
-        case 'right':
-            cube.position.x += speed;
-            break;
-    }
-}
-
-// Animación
-function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
 }
 
 function updateProgress(current, total) {
