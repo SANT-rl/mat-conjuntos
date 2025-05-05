@@ -5,6 +5,11 @@ let currentLevel = '';
 let questions = [];
 let currentQuestionIndex = 0;
 let answering = false; // Variable para controlar si el jugador está respondiendo
+let target; // Variable para el cuadro amarillo
+let questionContainer; // Contenedor para mostrar la pregunta
+let correctAnswer; // Variable para almacenar la respuesta correcta
+let totalQuestions = 20; // Total de preguntas
+let currentQuestionCount = 0; // Contador de preguntas respondidas
 
 // Función para empezar el juego
 function startGame(level) {
@@ -129,23 +134,40 @@ function endGame() {
 }
 
 function showCongratulations() {
-    document.getElementById('game-screen').style.display = 'none';
-    document.getElementById('congratulations-screen').style.display = 'block'; // Mostrar pantalla de felicitaciones
-
-    // Ocultar la barra de progreso
-    document.getElementById('progress-bar-container').style.display = 'none';
-
-    // Actualizar el mensaje de felicitaciones
-    const congratulationsMessage = document.getElementById('congratulations-message');
-    if (congratulationsMessage) {
-        congratulationsMessage.innerText = '¡Felicitaciones! Has completado el nivel con éxito.';
+    // Ocultar el cuadro de la pregunta si está visible
+    if (questionContainer) {
+        questionContainer.style.display = 'none';
     }
 
-    // Mostrar el puntaje final
-    const finalScore = document.getElementById('final-score');
-    if (finalScore) {
-        finalScore.innerText = `Puntaje final: ${score}`;
+    // Crear el cuadro de felicitaciones si no existe
+    let congratulationsPopup = document.getElementById('congratulations-popup');
+    if (!congratulationsPopup) {
+        congratulationsPopup = document.createElement('div');
+        congratulationsPopup.id = 'congratulations-popup';
+        congratulationsPopup.style.position = 'fixed';
+        congratulationsPopup.style.top = '50%';
+        congratulationsPopup.style.left = '50%';
+        congratulationsPopup.style.transform = 'translate(-50%, -50%)';
+        congratulationsPopup.style.background = 'rgba(0, 0, 0, 0.8)';
+        congratulationsPopup.style.color = 'white';
+        congratulationsPopup.style.padding = '20px';
+        congratulationsPopup.style.borderRadius = '10px';
+        congratulationsPopup.style.textAlign = 'center';
+        congratulationsPopup.style.zIndex = '1000';
+
+        // Agregar contenido al cuadro
+        congratulationsPopup.innerHTML = `
+            <h2>¡Felicitaciones!</h2>
+            <p>Has completado las 20 preguntas con éxito.</p>
+            <button onclick="returnToMainMenu()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background: #4caf50; color: white; cursor: pointer;">Regresar al Menú Principal</button>
+        `;
+
+        // Agregar el cuadro al cuerpo del documento
+        document.body.appendChild(congratulationsPopup);
     }
+
+    // Mostrar el cuadro
+    congratulationsPopup.style.display = 'block';
 }
 
 // Mostrar el menú de selección de dificultad
@@ -165,12 +187,40 @@ function showGameMenu() {
 
 // Volver al menú principal
 function returnToMainMenu() {
+    // Ocultar el contenedor del juego y mostrar el menú principal
     document.getElementById('game-2-container').style.display = 'none';
-    document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
-    document.getElementById('main-menu').style.display = 'block'; // Mostrar el menú principal
+    document.getElementById('main-menu').style.display = 'block';
 
-    // Ocultar la barra de progreso
-    document.getElementById('progress-bar-container').style.display = 'none';
+    // Reiniciar variables del juego
+    score = 0;
+    lives = 3;
+    currentLevel = '';
+    questions = [];
+    currentQuestionIndex = 0;
+    answering = false;
+    currentQuestionCount = 0;
+
+    // Eliminar el cuadro amarillo si existe
+    if (target) {
+        target.remove();
+        target = null;
+    }
+
+    // Ocultar el cuadro de la pregunta si está visible
+    if (questionContainer) {
+        questionContainer.style.display = 'none';
+    }
+
+    // Ocultar el cuadro de felicitaciones si está visible
+    const congratulationsPopup = document.getElementById('congratulations-popup');
+    if (congratulationsPopup) {
+        congratulationsPopup.style.display = 'none';
+    }
+
+    // Reiniciar la posición del jugador
+    const player = document.getElementById('player');
+    player.style.left = '10px';
+    player.style.bottom = '10px';
 }
 
 function goToMenu() {
@@ -181,6 +231,7 @@ function goToMenu() {
     score = 0;
     lives = 3;
     currentLevel = '';
+    currentQuestionCount = 0;
 
     // Mostrar pantallas correctamente
     document.getElementById('game-over-screen').style.display = 'none'; // Ocultar pantalla de derrota
@@ -208,9 +259,135 @@ function updateProgress(current, total) {
 function startGame2() {
     document.getElementById('main-menu').style.display = 'none';
     document.getElementById('game-2-container').style.display = 'flex';
+
+    // Generar el primer cuadro amarillo
+    generateTarget();
 }
 
-// Función para mover el cuadro
+// Función para generar un cuadro amarillo en una posición aleatoria
+function generateTarget() {
+    const base = document.getElementById('game-base');
+    const baseWidth = base.offsetWidth;
+    const baseHeight = base.offsetHeight;
+
+    // Crear el cuadro amarillo si no existe
+    if (!target) {
+        target = document.createElement('div');
+        target.id = 'target';
+        base.appendChild(target);
+    }
+
+    // Generar posiciones aleatorias dentro de los límites de la base
+    const targetSize = 30; // Tamaño del cuadro amarillo
+    const randomLeft = Math.floor(Math.random() * (baseWidth - targetSize));
+    const randomBottom = Math.floor(Math.random() * (baseHeight - targetSize));
+
+    // Posicionar el cuadro amarillo
+    target.style.left = `${randomLeft}px`;
+    target.style.bottom = `${randomBottom}px`;
+}
+
+// Función para verificar si el cuadro verde toca el cuadro amarillo
+function checkCollision() {
+    const player = document.getElementById('player');
+    const playerRect = player.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    // Verificar colisión
+    if (
+        playerRect.left < targetRect.right &&
+        playerRect.right > targetRect.left &&
+        playerRect.top < targetRect.bottom &&
+        playerRect.bottom > targetRect.top
+    ) {
+        // Si hay colisión, generar una pregunta matemática
+        generateMathQuestion();
+    }
+}
+
+// Función para generar una pregunta matemática
+function generateMathQuestion() {
+    const operations = ['+', '-', '*'];
+    const num1 = Math.floor(Math.random() * 10) + 1; // Número aleatorio entre 1 y 10
+    let num2 = Math.floor(Math.random() * 10) + 1; // Número aleatorio entre 1 y 10
+    const operation = operations[Math.floor(Math.random() * operations.length)]; // Operación aleatoria
+
+    // Asegurarse de que num1 >= num2 para evitar resultados negativos en la resta
+    if (operation === '-') {
+        if (num1 < num2) {
+            [num1, num2] = [num2, num1]; // Intercambiar valores si num1 es menor que num2
+        }
+        correctAnswer = num1 - num2;
+    } else if (operation === '+') {
+        correctAnswer = num1 + num2;
+    } else if (operation === '*') {
+        correctAnswer = num1 * num2;
+    }
+
+    // Mostrar la pregunta
+    if (!questionContainer) {
+        questionContainer = document.createElement('div');
+        questionContainer.id = 'math-question';
+        document.getElementById('game-2-container').appendChild(questionContainer);
+    }
+
+    questionContainer.innerHTML = `
+        <p>¿Cuánto es ${num1} ${operation} ${num2}?</p>
+        <input type="number" id="player-answer" inputmode="numeric" placeholder="Escribe tu respuesta" style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        <button onclick="checkMathAnswer()">Responder</button>
+        <p id="feedback-message" style="margin-top: 10px; color: white;"></p>
+        <p id="question-counter" style="margin-top: 10px; color: white;">Pregunta ${currentQuestionCount + 1}/${totalQuestions}</p>
+    `;
+
+    // Mostrar el cuadro de la pregunta
+    questionContainer.style.display = 'block';
+
+    // Ocultar el cuadro amarillo mientras se responde
+    target.style.display = 'none';
+}
+
+// Función para verificar la respuesta del jugador
+function checkMathAnswer() {
+    const playerAnswer = document.getElementById('player-answer').value.trim(); // Obtener el valor ingresado
+    const feedbackMessage = document.getElementById('feedback-message');
+
+    if (playerAnswer === '') {
+        // Si el campo está vacío, mostrar un mensaje
+        feedbackMessage.style.color = 'orange';
+        feedbackMessage.innerText = 'Por favor, ingresa una respuesta.';
+        return;
+    }
+
+    if (parseInt(playerAnswer) === correctAnswer) {
+        // Respuesta correcta
+        feedbackMessage.style.color = 'green';
+        feedbackMessage.innerText = '¡Correcto! Felicitaciones.';
+
+        // Incrementar el contador de preguntas
+        currentQuestionCount++;
+
+        // Verificar si se alcanzó el total de preguntas
+        if (currentQuestionCount >= totalQuestions) {
+            setTimeout(() => {
+                showCongratulations(); // Mostrar el cuadro de felicitaciones
+            }, 1000);
+        } else {
+            // Esperar un segundo antes de continuar
+            setTimeout(() => {
+                feedbackMessage.innerText = ''; // Limpiar el mensaje de retroalimentación
+                questionContainer.style.display = 'none'; // Ocultar la pregunta
+                generateTarget(); // Generar un nuevo cuadro amarillo
+                target.style.display = 'block'; // Mostrar el cuadro amarillo
+            }, 1000);
+        }
+    } else {
+        // Respuesta incorrecta
+        feedbackMessage.style.color = 'red';
+        feedbackMessage.innerText = 'Incorrecto. Vuelve a intentarlo.';
+    }
+}
+
+// Modificar la función `movePlayer` para verificar colisiones
 function movePlayer(direction) {
     const player = document.getElementById('player');
     const base = document.getElementById('game-base');
@@ -235,4 +412,12 @@ function movePlayer(direction) {
     } else if (direction === 'right' && playerLeft + playerSize + step <= baseWidth) {
         player.style.left = `${playerLeft + step}px`;
     }
+
+    // Verificar colisión después de mover
+    checkCollision();
 }
+
+// Generar el primer cuadro amarillo al iniciar el juego
+document.addEventListener('DOMContentLoaded', () => {
+    generateTarget();
+});
