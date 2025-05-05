@@ -48,11 +48,18 @@
         <div id="lives">Vidas: 3</div>
     </div>
 
-    <!-- Pantalla de felicitaciones -->
+    <!-- Pantalla de felicitaciones del juego de conjuntos -->
     <div id="congratulations-screen" style="display:none;">
-        <h2 id="congratulations-message"></h2> <!-- Mensaje de felicitaciones -->
-        <p id="final-score"></p> <!-- Puntaje final -->
-        <button onclick="goToMenu()">Regresar al Menú de Juego</button>
+        <h2 id="congratulations-message">¡Felicidades!</h2>
+        <p id="final-score">Has completado el juego de conjuntos con éxito.</p>
+        <button onclick="goToMenu()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background: #4caf50; color: white; cursor: pointer;">Regresar al Menú de Juego</button>
+    </div>
+
+    <!-- Pantalla de felicitaciones para Pac Match -->
+    <div id="pacmath-congratulations" style="display:none;">
+        <h2>¡Felicitaciones!</h2>
+        <p>Has completado las 20 preguntas con éxito.</p>
+        <button onclick="returnToMainMenu()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background: #4caf50; color: white; cursor: pointer;">Volver al Menú Principal</button>
     </div>
 
     <!-- Pantalla de derrota -->
