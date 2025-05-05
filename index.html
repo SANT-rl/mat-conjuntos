@@ -12,7 +12,7 @@
     <div id="main-menu" style="display:block;">
         <h1>Selecciona un Juego 🎮</h1>
         <button onclick="showGameMenu()">Juego de Conjuntos</button>
-        <button onclick="startGame2()">Juego 2</button>
+        <button onclick="startGame2()">Pac Match</button>
         <button onclick="alert('Juego 3 no implementado aún')">Juego 3</button>
         <div id="welcome-message">
             <h3>Bienvenido, pásala bien 🕹️</h3>
@@ -69,11 +69,11 @@
             <div id="player"></div>
         </div>
         <div id="controls">
-            <button onclick="movePlayer('up')">⬆️</button>
+            <button onclick="movePlayer('up')">↑</button>
             <div>
-                <button onclick="movePlayer('left')">⬅️</button>
-                <button onclick="movePlayer('down')">⬇️</button>
-                <button onclick="movePlayer('right')">➡️</button>
+                <button onclick="movePlayer('left')">←</button>
+                <button onclick="movePlayer('down')">↓</button>
+                <button onclick="movePlayer('right')">→</button>
             </div>
         </div>
         <button id="return-to-menu" onclick="returnToMainMenu()">Volver al Menú Principal</button>
