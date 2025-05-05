@@ -84,8 +84,9 @@ function showQuestion() {
         document.getElementById('feedback').innerText = ''; // Limpiar feedback de respuestas anteriores
         document.getElementById('lives').innerText = `Vidas: ${lives}`; // Actualizar vidas
     } else {
-        // Si se completaron todas las preguntas, mostrar felicitaciones
-        showCongratulations();
+        // Si se completaron todas las preguntas, mostrar el menú de felicitaciones del juego de conjuntos
+        document.getElementById('game-screen').style.display = 'none';
+        document.getElementById('congratulations-screen').style.display = 'block';
     }
 }
 
@@ -134,40 +135,12 @@ function endGame() {
 }
 
 function showCongratulations() {
-    // Ocultar el cuadro de la pregunta si está visible
-    if (questionContainer) {
-        questionContainer.style.display = 'none';
+    // Esta función solo debe usarse en el juego 2
+    document.getElementById('game-2-container').style.display = 'none';
+    const congratulationsPopup = document.getElementById('pacmath-congratulations');
+    if (congratulationsPopup) {
+        congratulationsPopup.style.display = 'block';
     }
-
-    // Crear el cuadro de felicitaciones si no existe
-    let congratulationsPopup = document.getElementById('congratulations-popup');
-    if (!congratulationsPopup) {
-        congratulationsPopup = document.createElement('div');
-        congratulationsPopup.id = 'congratulations-popup';
-        congratulationsPopup.style.position = 'fixed';
-        congratulationsPopup.style.top = '50%';
-        congratulationsPopup.style.left = '50%';
-        congratulationsPopup.style.transform = 'translate(-50%, -50%)';
-        congratulationsPopup.style.background = 'rgba(0, 0, 0, 0.8)';
-        congratulationsPopup.style.color = 'white';
-        congratulationsPopup.style.padding = '20px';
-        congratulationsPopup.style.borderRadius = '10px';
-        congratulationsPopup.style.textAlign = 'center';
-        congratulationsPopup.style.zIndex = '1000';
-
-        // Agregar contenido al cuadro
-        congratulationsPopup.innerHTML = `
-            <h2>¡Felicitaciones!</h2>
-            <p>Has completado las 20 preguntas con éxito.</p>
-            <button onclick="returnToMainMenu()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background: #4caf50; color: white; cursor: pointer;">Regresar al Menú Principal</button>
-        `;
-
-        // Agregar el cuadro al cuerpo del documento
-        document.body.appendChild(congratulationsPopup);
-    }
-
-    // Mostrar el cuadro
-    congratulationsPopup.style.display = 'block';
 }
 
 // Mostrar el menú de selección de dificultad
@@ -187,8 +160,16 @@ function showGameMenu() {
 
 // Volver al menú principal
 function returnToMainMenu() {
-    // Ocultar el contenedor del juego y mostrar el menú principal
-    document.getElementById('game-2-container').style.display = 'none';
+    // Ocultar todas las pantallas
+    document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
+    document.getElementById('game-screen').style.display = 'none'; // Ocultar la pantalla del juego
+    document.getElementById('game-over-screen').style.display = 'none'; // Ocultar la pantalla de derrota
+    document.getElementById('congratulations-screen').style.display = 'none'; // Ocultar la pantalla de felicitaciones del juego de conjuntos
+    document.getElementById('pacmath-congratulations').style.display = 'none'; // Ocultar la pantalla de felicitaciones de Pac Match
+    document.getElementById('game-2-container').style.display = 'none'; // Ocultar el contenedor del juego 2
+    document.getElementById('progress-bar-container').style.display = 'none'; // Ocultar la barra de progreso
+
+    // Mostrar solo el menú principal
     document.getElementById('main-menu').style.display = 'block';
 
     // Reiniciar variables del juego
@@ -200,27 +181,26 @@ function returnToMainMenu() {
     answering = false;
     currentQuestionCount = 0;
 
-    // Eliminar el cuadro amarillo si existe
+    // Limpiar textos visibles
+    const questionElement = document.getElementById('question');
+    if (questionElement) questionElement.innerText = '';
+    const feedbackElement = document.getElementById('feedback');
+    if (feedbackElement) feedbackElement.innerText = '';
+    const scoreElement = document.getElementById('score');
+    if (scoreElement) scoreElement.innerText = 'Puntos: 0';
+    const livesElement = document.getElementById('lives');
+    if (livesElement) livesElement.innerText = 'Vidas: 3';
+
+    // Eliminar el cuadro amarillo si existe (para el juego 2)
     if (target) {
         target.remove();
         target = null;
     }
 
-    // Ocultar el cuadro de la pregunta si está visible
+    // Ocultar cualquier cuadro de felicitaciones o preguntas si están visibles
     if (questionContainer) {
         questionContainer.style.display = 'none';
     }
-
-    // Ocultar el cuadro de felicitaciones si está visible
-    const congratulationsPopup = document.getElementById('congratulations-popup');
-    if (congratulationsPopup) {
-        congratulationsPopup.style.display = 'none';
-    }
-
-    // Reiniciar la posición del jugador
-    const player = document.getElementById('player');
-    player.style.left = '10px';
-    player.style.bottom = '10px';
 }
 
 function goToMenu() {
@@ -231,7 +211,6 @@ function goToMenu() {
     score = 0;
     lives = 3;
     currentLevel = '';
-    currentQuestionCount = 0;
 
     // Mostrar pantallas correctamente
     document.getElementById('game-over-screen').style.display = 'none'; // Ocultar pantalla de derrota
@@ -369,7 +348,7 @@ function checkMathAnswer() {
         // Verificar si se alcanzó el total de preguntas
         if (currentQuestionCount >= totalQuestions) {
             setTimeout(() => {
-                showCongratulations(); // Mostrar el cuadro de felicitaciones
+                showPacMathCongratulations(); // Mostrar el cuadro de felicitaciones
             }, 1000);
         } else {
             // Esperar un segundo antes de continuar
@@ -421,3 +400,16 @@ function movePlayer(direction) {
 document.addEventListener('DOMContentLoaded', () => {
     generateTarget();
 });
+
+function showPacMathCongratulations() {
+    // Ocultar el cuadro de la pregunta si está visible
+    if (questionContainer) {
+        questionContainer.style.display = 'none';
+    }
+
+    // Mostrar el cuadro de felicitaciones
+    const congratulationsPopup = document.getElementById('pacmath-congratulations');
+    if (congratulationsPopup) {
+        congratulationsPopup.style.display = 'block';
+    }
+}
