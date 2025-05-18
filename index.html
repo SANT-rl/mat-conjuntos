@@ -13,7 +13,7 @@
         <h1>Selecciona un Juego 🎮</h1>
         <button onclick="showGameMenu()">Juego de Conjuntos</button>
         <button onclick="startGame2()">Pac Match</button>
-        <button onclick="alert('Juego 3 no implementado aún')">Juego 3</button>
+        <button onclick="startGame3()">Información</button>
         <div id="welcome-message">
             <h3>Bienvenido, pásala bien 🕹️</h3>
         </div>
@@ -84,6 +84,27 @@
             </div>
         </div>
         <button id="return-to-menu" onclick="returnToMainMenu()">Volver al Menú Principal</button>
+    </div>
+
+    <!-- Juego 3: Información -->
+    <div id="game-3-container" style="display:none;">
+        <div id="info-content" style="width:100%;max-width:900px;min-height:300px;padding:30px 20px;font-size:1.3em;line-height:1.7;color:#fff;text-align:left;">
+            <!-- Escribe aquí tu información, créditos, etc. Puedes usar HTML libremente -->
+            <p>Proyecto realizado por: Ana Ramirez, Daynett fox y Karen Quiceno.</p>
+            <p>Profesor: Yeison Andres Sánchez</p>
+            <p>Universidad: La Gran Colombia</p>
+            <p>Carrera: Profesional en lenguas extranjeras</p>
+            <p>Este juego esta hecho 100% con codigo de programacion como se muestra en las imagenes laterales, es codigo de uso libre para el que se quiera entretener.</p>
+            
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <img src="code1.png" alt="Imagen 2" class="info-img-side" style="max-width: 180px; border-radius: 15px;">
+                <img src="equipo.jpg" alt="Imagen 3" class="info-img-center">
+                <img src="code2.png" alt="Imagen 1" class="info-img-side" style="max-width: 180px; border-radius: 15px;">
+            </div>
+            <!-- Puedes cambiar los nombres y rutas de las imágenes según tus archivos -->
+        </div>
+        <button onclick="returnToMainMenu()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background: #4caf50; color: white; cursor: pointer;">Volver al Menú Principal</button>
     </div>
 
     <div id="progress-bar-container" style="display:none;">
