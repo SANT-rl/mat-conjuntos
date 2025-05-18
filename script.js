@@ -160,6 +160,19 @@ function showGameMenu() {
 
 // Volver al menú principal
 function returnToMainMenu() {
+    document.getElementById('main-menu').style.display = 'block';
+    document.getElementById('menu-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('congratulations-screen').style.display = 'none';
+    document.getElementById('pacmath-congratulations').style.display = 'none';
+    document.getElementById('game-over-screen').style.display = 'none';
+    document.getElementById('game-2-container').style.display = 'none';
+    document.getElementById('game-3-container').style.display = 'none';
+    document.getElementById('progress-bar-container').style.display = 'none';
+}
+
+// Mostrar solo el menú principal
+function showMainMenu() {
     // Ocultar todas las pantallas
     document.getElementById('menu-screen').style.display = 'none'; // Ocultar el menú de selección de niveles
     document.getElementById('game-screen').style.display = 'none'; // Ocultar la pantalla del juego
@@ -167,6 +180,7 @@ function returnToMainMenu() {
     document.getElementById('congratulations-screen').style.display = 'none'; // Ocultar la pantalla de felicitaciones del juego de conjuntos
     document.getElementById('pacmath-congratulations').style.display = 'none'; // Ocultar la pantalla de felicitaciones de Pac Match
     document.getElementById('game-2-container').style.display = 'none'; // Ocultar el contenedor del juego 2
+    document.getElementById('game-3-container').style.display = 'none'; // Ocultar el contenedor del juego 3
     document.getElementById('progress-bar-container').style.display = 'none'; // Ocultar la barra de progreso
 
     // Mostrar solo el menú principal
@@ -412,4 +426,17 @@ function showPacMathCongratulations() {
     if (congratulationsPopup) {
         congratulationsPopup.style.display = 'block';
     }
+}
+
+// Función para iniciar el Juego 3
+function startGame3() {
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('menu-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('congratulations-screen').style.display = 'none';
+    document.getElementById('pacmath-congratulations').style.display = 'none';
+    document.getElementById('game-over-screen').style.display = 'none';
+    document.getElementById('game-2-container').style.display = 'none';
+    document.getElementById('progress-bar-container').style.display = 'none';
+    document.getElementById('game-3-container').style.display = 'block';
 }
