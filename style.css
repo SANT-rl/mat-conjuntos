@@ -487,3 +487,9 @@ button:hover {
     border: 3px solid #4caf50;
     box-shadow: 0 2px 8px rgba(76,175,80,0.15);
 }
+
+#game-3-container {
+    max-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* para mejor scroll en iOS */
+}
