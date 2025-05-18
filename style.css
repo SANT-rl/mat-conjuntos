@@ -97,14 +97,14 @@ button:hover {
     border: none;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 3px 10px rgba(67, 206, 162, 0.4);
+    box-shadow: 0 3px 10px rgba(67,206,162,0.4);
     width: 100%;
     max-width: 300px;
 }
 
 #answers button:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(67, 206, 162, 0.6);
+    box-shadow: 0 5px 15px rgba(67,206,162,0.6);
 }
 
 /* Feedback de respuestas */
@@ -151,12 +151,12 @@ button:hover {
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 3px 10px rgba(76,175,80,0.4);
 }
 
 #congratulations-screen button:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.6);
+    box-shadow: 0 5px 15px rgba(76,175,80,0.6);
 }
 
 /* Pantalla de derrota */
@@ -194,12 +194,12 @@ button:hover {
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 3px 10px rgba(255, 82, 82, 0.4);
+    box-shadow: 0 3px 10px rgba(255,82,82,0.4);
 }
 
 #game-over-screen button:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 82, 82, 0.6);
+    box-shadow: 0 5px 15px rgba(255,82,82,0.6);
 }
 
 /* Contenedor del juego */
@@ -218,7 +218,7 @@ button:hover {
 #game-base {
     width: 300px;
     height: 300px;
-    background: #555;
+    background: none;
     position: relative;
     border: 2px solid #fff;
     border-radius: 10px;
@@ -464,4 +464,26 @@ button:hover {
 
 #pacmath-congratulations button:hover {
     background: #388e3c;
+}
+
+/* Estilo para centrar imágenes con clase .info-img-center */
+.info-img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 5px solid;
+    border-image: linear-gradient(135deg, #ffcc00, #6a11cb, #2575fc, #43cea2) 1;
+    border-radius: 20px;
+    box-shadow: 0 6px 24px 0 rgba(106,17,203,0.25), 0 1.5px 6px 0 rgba(255,204,0,0.25);
+}
+
+/* Estilo para las imágenes laterales */
+.info-img-side {
+    max-width: 180px;
+    border-radius: 15px;
+    border: 3px solid #4caf50;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.15);
 }
